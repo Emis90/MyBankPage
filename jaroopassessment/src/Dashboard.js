@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card'
 import axios from 'axios'
-// import * as lorem from "lorem-ipsum";
+
 const Dashboard = ({balance, setBalance}) => {
     const [transactions, setTrans] = useState([])
 
     const getTransactions = async()=> {
         let {data} = await axios.get('/api/transactions')
         setTrans(data)
-     }
-    const purchase = async() => {
+    }
 
+    const purchase = async() => {
         let type = ['Credit', 'Debit']
         let random = 
             {
-                id: Math.floor(Math.random() * 100),
+                id: transactions[transactions.length - 1].id - 1,
                 created: new Date(),
                 amount: (Math.random() * 1000).toFixed(2),
                 type: type[Math.floor(Math.random() * (2 - 1) + 1)],
@@ -49,9 +49,7 @@ const Dashboard = ({balance, setBalance}) => {
                       return <Card transaction={el}/>
                     }) : null}
                 </div>
-       
             </div>
-
         </div>
     )
 }

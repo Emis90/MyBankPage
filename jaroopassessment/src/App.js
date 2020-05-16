@@ -7,7 +7,7 @@ import axios from 'axios'
 function App() {
   const [ page, setPage ] = useState('profile')
   const [ user, setUser ] = useState(null) 
-  const [balance, setBalance ] = useState(0)
+  const [ balance, setBalance ] = useState(0)
 
   const getUser = async()=> {
       let {data}= await axios.get('/api/user')

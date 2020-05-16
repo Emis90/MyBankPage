@@ -70,12 +70,17 @@
   justify-content: space-evenly;
   overflow-y: scroll;
 }
-#addButton {
-  padding: .5em;
-  border-radius: .2em;
+button, #submit, input {
+  padding: 2%;
+  border-radius: 2%;
+  margin: 1%;
   background-color: rgb(226, 235, 252);
-  color: rgb(6, 6, 151);
+  color: rgb(6, 6, 214);
+  border-width: .5;
+  border-color: darkblue;
+  border-style: none;
   font-weight: bold;
+
 }
 #addButton:hover {
   cursor: pointer;
@@ -88,8 +93,29 @@
 
 }
 input:invalid {
-  background-color: pink;
+  background-color: rgb(250, 211, 217);
 }
+input:valid {
+  background-color: rgb(217, 247, 216);
+}
+input {
+  min-width: 35%;
+  min-height: 10%;
+  padding: 2%;
+  margin: 1%;
+  font-size: medium;
+}
+#form {
+  /* padding: 8%; */
+  margin: 5%;
+  justify-content: flex-end;
+}
+.fields {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 1%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

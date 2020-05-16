@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
 import Form from './Form'
 const Profile = ({user, setUser}) => {
     
-    const [toggle, setToggle] = useState('info')
+    const [toggle, setToggle] = useState('change')
     
    if(toggle === 'info') {
     return (
@@ -16,7 +16,7 @@ const Profile = ({user, setUser}) => {
             </div>
             ) : null}
          </div> 
-         <button onClick={()=> setToggle('change')}>Change credentials</button> 
+         <button id='changeButton' onClick={()=> setToggle('change')}>Change credentials</button> 
         </div>
     )
    } else {
