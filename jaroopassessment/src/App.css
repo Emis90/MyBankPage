@@ -70,7 +70,7 @@
   justify-content: space-evenly;
   overflow-y: scroll;
 }
-button, #submit, input {
+button, #submit, input, #cancelButton{
   border-radius: 2%;
   background-color: rgb(226, 235, 252);
   color: rgb(6, 6, 214);
@@ -80,6 +80,12 @@ button, #submit, input {
   font-weight: bold;
   padding: 1%;
 }
+.cancelButton:-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+select {
+  -ms-progress-appearance: none;
+}
 #addButton:hover {
   cursor: pointer;
   background-color: crimson;
@@ -87,7 +93,6 @@ button, #submit, input {
 }
 .card {
   padding: .5em;
-
 }
 input:invalid {
   background-color: rgb(250, 211, 217);
@@ -95,12 +100,16 @@ input:invalid {
 input:valid {
   background-color: rgb(217, 247, 216);
 }
-input {
+input, select {
   min-width: 35%;
   min-height: 10%;
   padding: 2%;
   margin: 1%;
   font-size: medium;
+}
+#tform {
+flex-direction: 'column';
+flex-wrap: nowrap;
 }
 #form {
   /* padding: 8%; */
@@ -111,6 +120,10 @@ input {
   flex-direction: column;
   flex-wrap: nowrap;
   margin: 1%;
+}
+
+.tformElement {
+  justify-self: center;
 }
 
 @keyframes App-logo-spin {

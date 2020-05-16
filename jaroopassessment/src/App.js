@@ -2,20 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Profile from './Profile'
 import Dashboard from './Dashboard'
 import './App.css';
-import axios from 'axios'
+
 
 function App() {
-  const [ page, setPage ] = useState('profile')
+  const [ page, setPage ] = useState('dashboard')
   const [ user, setUser ] = useState(null) 
   const [ balance, setBalance ] = useState(0)
 
   const getUser = async()=> {
-      let {data}= await axios.get('/api/user')
-      setUser(data.user)
-      setBalance(data.user.balance)
+    try {
+      fetch("/api/account/100", {method: 'get'})
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data.user)
+        setBalance(data.user.balance)
+      })
+      .catch(error => error)  
+    } catch (error) {
+      console.log(error)
+    }
   }
   useEffect(() => {
-    console.log('app renders')
     getUser()
   }, [])
 

@@ -6,55 +6,58 @@ import * as serviceWorker from './serviceWorker';
 import { Server } from "miragejs"
 const transactions = [
   {
-      id: 1000,
-      created: "2020-02-21T20:32:03.681Z",
-      amount: 2000,
-      type: "Debit",
-      description: "Payroll Direct Deposit"
+      "id": 1000,
+      "created": "2020-02-21T20:32:03.681Z",
+      "amount": 2000,
+      "type": "Debit",
+      "description": "Payroll Direct Deposit"
   },
   {
-      id: 999,
-      created: "2020-02-21T20:14:09.703Z",
-      amount: 45.55,
-      type: "Credit",
-      description: "Main Street Gas Station"
+      "id": 999,
+      "created": "2020-02-21T20:14:09.703Z",
+      "amount": 45.55,
+      "type": "Credit",
+      "description": "Main Street Gas Station"
   }
 ]
 let currentUser = { 
-  user: {id: 100, 
-  firstName: 'Jane', lastName: 
-  'Smith', email: 'jane.smith@example.com',
+  user: {
+  id: 100, 
+  firstName: 'Jane', 
+  lastName:'Smith', 
+  email: 'jane.smith@example.com',
   phone: '5555555555', 
   created: '2020-02-21T02:00:00.000Z', 
-  balance: 4500.00}
+  balance: 12345.67}
 }
 
 new Server({
   routes() {
     this.namespace = "/api"
 
-    this.get("/user", () => {
+    this.get("/account/:id", () => {
       return currentUser
     })
-    this.get("/transactions", ()=> {
+    this.get("/account/:id/transactions", ()=> {
       return transactions
     })
-    this.post("/transactions/:newTransaction", (schema, request, response) => {
+    this.post("/account/:id/transactions", (schema, request, response) => {
       try {
-        let data = request.params.newTransaction
+        let data = request.requestBody
         data = JSON.parse(data)
         transactions.push(data)
+        console.log('ransactions ', transactions)
         return transactions
       } catch (error) {
         throw(error)
       }
     })
-    this.put("/user", (schema, request, response) => {
+    this.put("/account/user/:id", (schema, request, response) => {
        try {
-         let currentUser = request.requestBody
-         return currentUser
+         let newUser = request.requestBody
+         return newUser
        } catch (error) {
-         
+        throw(error)
        }
     })
   }

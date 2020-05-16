@@ -18,7 +18,7 @@ const Profile = ({user, setUser}) => {
         </div>
     )
    } else {
-     return <Form setToggle={setToggle} setUser={setUser}/>
+     return <Form setToggle={setToggle} setUser={setUser} user={user}/>
    }
 
 }

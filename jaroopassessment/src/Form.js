@@ -1,11 +1,12 @@
 import React, {useState } from 'react'
-import axios from 'axios'
 
 //use span for errors
-const Form = ({setToggle, setUser}) => {
+const Form = ({setToggle, setUser, user}) => {
     const [newUser, setNewUser] = useState({firstName: '', lastName: '', phone: '', email: ''})
-
-    const change = (event) => {/////validate here
+    const cancel = () => {
+      setToggle(false)
+  }
+    const change = (event) => {
         setNewUser({...newUser, 
          [event.target.name]: event.target.value
         })
@@ -18,11 +19,14 @@ const Form = ({setToggle, setUser}) => {
         newUser.lastName = newUser.lastName[0].toUpperCase() + newUser.lastName.slice(1).toLowerCase()
         newUser.created = new Date()
       try {
-        let {data} = await axios.put(`/api/user`, newUser)
-        setUser(data)
-        setToggle('info')
+        fetch(`/api/account/user/${user.id}`, { method: 'PUT', body: JSON.stringify(newUser) })
+        .then(res => res.json())
+        .then(data => {
+          setUser(data)
+          setToggle('info')})
+        .catch(error => console.log(error))
       } catch (error) {
-        throw(error)
+        console.log('error from tryc', error)
       }
     }
 
@@ -31,22 +35,22 @@ const Form = ({setToggle, setUser}) => {
           <h3>Submit your new credentials</h3>
         <form onChange={change} onSubmit={(e)=> submit(e)}>
         <div className='fields'>
-        <input type="text" name="firstName" placeHolder='First name'required/>
+        <input type="text" name="firstName" placeholder='First name'required/>
         </div>
         <div className='fields'>
-        <input type="text" name="lastName" placeHolder='Last name' required/>
+        <input type="text" name="lastName" placeholder='Last name' required/>
         </div>
         <div className='fields'>
-        <input type="tel" name="phone" placeHolder='phone'pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" required/>
+        <input type="tel" name="phone" placeholder='phone'pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" required/>
         </div>
         <div className='fields'>
-        <input type="email" name="email" placeHolder='email' required/>
+        <input type="email" name="email" placeholder='email' required/>
         </div>
         <div className='fields'>
         <input type="submit" value="Submit" id='submit'/> 
         </div>
-
         </form>
+        <button className='cancelButton' onClick={cancel}>cancel</button>
         </div>
         )
 }
