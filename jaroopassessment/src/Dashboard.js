@@ -42,7 +42,7 @@ const Dashboard = ({balance, setBalance}) => {
             <button id='addButton' onClick={()=> purchase()}>Purchase something random</button>
             </div>
             <div className="transactionsBox">
-                <p>Transactions</p>
+                <h2>Transactions</h2>
 
                 <div className='passedTransactions'>
                   {transactions && transactions ? transactions.map(el => {
