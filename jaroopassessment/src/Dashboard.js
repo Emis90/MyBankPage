@@ -7,11 +7,12 @@ const Dashboard = ({balance, setBalance}) => {
     const [transactions, setTrans] = useState([])
     const [toggle, setToggle] = useState(false)
     const getTransactions = async()=> {
-        // let {data} = await axios.get('/api/transactions')
         try {
             fetch("/api/account/100/transactions", {method: 'get'})
             .then((response) => response.json())
-            .then((data) => setTrans(data))
+            .then((data) => {
+                setTrans(data)
+            })
             .catch(error => error)
         } catch (error) {
             console.log(error)

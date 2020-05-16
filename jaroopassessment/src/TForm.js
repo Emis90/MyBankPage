@@ -10,22 +10,25 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
      }
     const submit = (e) => {
        e.preventDefault()
-       newTransaction.id = transactions[transactions.length - 1].id - 1
-       newTransaction.created = new Date()
-       newTransaction.description = newTransaction.description.split(' ').map(el => {
-       return el[0].toUpperCase() + el.slice(1).toLowerCase()
-    }).join(' ')
-    
-    fetch("/api/account/100/transactions", {method: 'post', body: JSON.stringify(newTransaction)})
-    .then((response) => response.json())
-    .then((data) => {
-        let newBalance = balance - data[data.length - 1].amount
-        setBalance(newBalance.toFixed(2))
-        setToggle(false)
-    })
-    .catch(error => error)
-
-    console.log('new transaction from modal  ', newTransaction)
+       if(newTransaction.amount > balance) {
+           alert(`Cannot submit payment of ${newTransaction.amount}, insufficient funds`)
+           setToggle(false)
+       } else {
+        newTransaction.id = transactions[transactions.length - 1].id - 1
+        newTransaction.created = new Date()
+        newTransaction.description = newTransaction.description.split(' ').map(el => {
+        return el[0].toUpperCase() + el.slice(1).toLowerCase()
+         }).join(' ')
+     
+        fetch("/api/account/100/transactions", {method: 'post', body: JSON.stringify(newTransaction)})
+        .then((response) => response.json())
+        .then((data) => {
+            let newBalance = balance - data[data.length - 1].amount
+            setBalance(newBalance.toFixed(2))
+            setToggle(false)
+        })
+        .catch(error => error)
+      }
 }
 
    return  (
