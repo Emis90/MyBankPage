@@ -1,0 +1,93 @@
+Front-End Developer Assignment
+
+Jaroop recently landed a big new client: a bank who is looking to create a new Web app. You have been tasked with creating the browser client for this application, a single-page React app that interacts with a REST API. Since the back-end developers are still working on implementing the API, you’ll have to build the front end according to the API specs (included) using a mock API.
+
+Acceptance Criteria:
+	•	All API requests must comply with the API specification (see below).
+	•	When a user first accesses the application, they should be taken to their dashboard, which displays their current balance and a list of the most recent transactions.
+	•	From the dashboard, users should be able to access a second view that allows users to record new debits or credits against their account.
+	•	Minimum transaction: $0.01
+	•	Maximum transaction: $1,000,000
+	•	Users should be able to get back to the dashboard from any other view.
+	•	All user input should be validated on the client side before making a request to the API.
+	•	The UI should work in both mobile and desktop browsers seamlessly.
+	•	The project should include a README file with instructions on how to run and test the application. You should also include a brief discussion of the architecture of your application and the tradeoffs of your approach, as well as some areas for improvement. 
+ 
+Extra Credit:
+	•	Automated tests (unit and/or integration tests)
+	•	TypeScript
+	•	An account details page that displays the account holder’s information (first name, last name, phone number, email) and allows them to edit it.
+	•	Implement pagination for the transaction list.
+
+We ask that developers use the most recent stable version of React. You may use any build tools or third-party dependencies that you deem necessary. 
+You may wish to use an API mocking library like Mirage to populate the page with fake data. 
+
+When finished, you should commit your source code to a git repository, then push that repository to a github.com account, 
+and provide us with the link to view it.  Please make sure that your project build is set up to use standard build tools and that it resolves third-party dependencies automatically. 
+The project should be buildable without using a specific IDE (i.e. we should be able to build it from the command line using standard tools like npm or yarn).
+API Specification
+The API is a standard REST API with endpoints that accept and receive JSON. Successful responses will have an HTTP 2xx status. Responses to requests with client-side errors will have a 4xx status. Server-side errors will result in a 500 status.
+
+Success response bodies are determined by each endpoint (documented below). Error response bodies have the following structure:
+
+{ "error": "Error message" }
+
+Get Account: GET /account/<id>
+Gets information about an account. A successful response (HTTP status 200) is a JSON object like the following:
+
+{
+    "id": 1000,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@example.com",
+    "phone": "5555555555",
+    "created": "2020-02-21T02:00:00.000Z"
+}
+
+Update Account: PUT /account/<id>
+Updates an account’s information. The request body should be a JSON object with the following fields:
+	•	firstName: Required. A non-empty string.
+	•	lastName: Required. A non-empty string.
+	•	email: Required. A well-formed email address.
+	•	phone: Required. A 10-digit US phone number with no punctuation.
+
+A successful response has a 204 (No Content) status code with no body.
+
+List Transactions: GET /account/<id>/transactions
+Gets a paginated list of transactions. The endpoint takes several query string parameters, all of which are optional:
+	•	pageSize: The maximum number of transactions to return. A positive integer. Default 10.
+	•	offset: The offset from the first transaction (in the current sort order). Used for pagination. A positive integer. Default 0.
+	•	newestToOldest: Whether to sort the transactions from newest to oldest. A Boolean. Default true.
+
+A successful response (200 status code) is a JSON array of transaction objects like the following:
+
+[
+    {
+        "id": 1000,
+        "created": "2020-02-21T20:32:03.681Z",
+        "amount": 2000,
+        "type": "Debit",
+        "description": "Payroll Direct Deposit"
+    },
+    {
+        "id": 999,
+        "created": "2020-02-21T20:14:09.703Z",
+        "amount": 45.55,
+        "type": "Credit",
+        "description": "Main Street Gas Station"
+    }
+]
+
+Create New Transaction: POST /account/<id>/transactions
+Creates a new transaction associated with an account. The request body should be a JSON object with the following fields:
+	•	amount: Required. A decimal amount indicating the amount of money in the transaction, in dollars. Must be a positive number with no more than two decimal places. Must be less than $1,000,000.
+	•	type: Required. A string that is either “Debit” (money added to the account) or “Credit” (money withdrawn from the account).
+	•	description: Required. A non-empty string describing where the money came from or went to.
+
+A successful response (201 “Created” status code) is a JSON object like those described above in “List Transactions.”
+
+Get Account Balance: GET /account/<id>/balance
+Gets the current balance for an account. A successful response (200 status code) is a JSON object like the following:
+
+{ "balance": 12345.67 }
+

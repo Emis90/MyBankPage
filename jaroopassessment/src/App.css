@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+  /* height: 100vh; */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: rgb(221, 223, 238);
+}
+.dashHeader:hover {
+ background-color: rgb(90, 91, 111);
+ cursor: pointer;
+}
+.profHeader:hover {
+  background-color: rgb(90, 91, 111);
+  cursor: pointer;
+ }
+.dashHeader {
+  width: fit-content;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.profHeader{
+  width: fit-content;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.currentBalance {
+  padding: 1em;
+}
+.App-link {
+  color: #61dafb;
+}
+#balanceTxt {
+  align-self: center;
+}
+.dashboard .profile {
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-evenly;
+ align-content: center;
+ align-items: center;
+ height: 90vh;
+}
+
+.transactionsBox {
+  padding: 1em;
+  background-color:rgb(90, 91, 111);
+  color: white;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  border-radius: .5em;
+  height: 30em;
+  justify-content: space-evenly;
+  overflow-y: scroll;
+}
+#addButton {
+  padding: .5em;
+  border-radius: .2em;
+  background-color: rgb(226, 235, 252);
+  color: rgb(6, 6, 151);
+  font-weight: bold;
+}
+#addButton:hover {
+  cursor: pointer;
+  background-color: crimson;
+  margin: 0;
+  outline: 0;
+}
+.card {
+  padding: .5em;
+
+}
+input:invalid {
+  background-color: pink;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
