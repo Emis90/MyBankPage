@@ -104,7 +104,6 @@ select {
   background-color: rgb(226, 235, 252);
   font-weight: bold;
   font-size: medium;
-  border-width: 0;
 }
 
 .form {
@@ -127,7 +126,14 @@ input::-webkit-inner-spin-button {
 #randomButton {
   font-size: medium;
   border-radius: .5em;
+  color:#dde5f4;
+  background-color: rgb(57, 57, 73);
+}
+#randomButton:hover {
+  font-size: medium;
+  border-radius: .5em;
   color:#282c34;
+  background-color:rgb(90, 91, 111);
 }
 
 @keyframes App-logo-spin {

@@ -6,6 +6,8 @@ import TForm from './TForm'
 const Dashboard = ({balance, setBalance}) => {
     const [transactions, setTrans] = useState([])
     const [toggle, setToggle] = useState(false)
+    // const [page, setPage] = useState(0)
+
     const getTransactions = async()=> {
         try {
             fetch('/api/account/100/transactions', {method: 'get'})
@@ -22,7 +24,16 @@ const Dashboard = ({balance, setBalance}) => {
     useEffect(() => {
       getTransactions()
     }, [balance])
-    
+
+    // const change = (type) => {
+    //     if(type === 'back') {
+
+    //     } else {
+    //         if (page === 1) {
+    //            let currentPage = transactions.slice(0, 1)
+    //         }
+    //     }
+    // }
     const modalStyle = {
         content : {
           top: '50%',
@@ -43,12 +54,21 @@ const Dashboard = ({balance, setBalance}) => {
              <TForm setBalance={setBalance} transactions={transactions} setToggle={setToggle} balance={balance}/>
             </Modal>
             </div>
+            <h3 style={{fontWeight: 'bold'}}>Transactions</h3>
             <div className='transactionsBox'>
-                <h3 style={{fontWeight: 'bold'}}>Transactions</h3>
                 <div className='passedTransactions'>
                   {transactions && transactions ? transactions.map(el => {
                       return <Card key={el.id} transaction={el}/>
                     }) : null}
+                    {/* {
+                     page < 2 
+                    ?   <button onClick={()=> change('next')}>next</button> 
+                    :
+                    (<div>
+                     <button onClick={()=>change('back')}>back</button>
+                     <button onClick={()=>change('next')}>next</button>
+                     </div>)
+                    } */}
             </div>
             </div>
         </div>
