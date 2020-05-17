@@ -18,6 +18,7 @@ const Root = () => {
       } catch (error) {
         console.log(error)
       }
+  
     }
   
     const getBalance = () => {
@@ -28,9 +29,10 @@ const Root = () => {
           setBalance(res.balance)
         })
         .catch(error => error)  
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        console.log(error)
       }
+
     }
   
     useEffect(() => {
@@ -38,13 +40,13 @@ const Root = () => {
     }, [])
     useEffect(() => {
       getBalance()
-    })
+    }, [user])
   
     const changePage = (page) => {
       setPage(page)
     }
     return (
-      <div className='App'>
+      <div className='Root'>
         <h3>Welcome back</h3>
         <header className='App-header'>
           <div className='dashHeader' onClick={()=> changePage('dashboard')}><p>dashboard</p></div>

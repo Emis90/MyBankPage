@@ -23,7 +23,7 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
         newTransaction.description = newTransaction.description.split(' ').map(el => {
         return el[0].toUpperCase() + el.slice(1).toLowerCase()
          }).join(' ')
-     
+    
         fetch('/api/account/100/transactions', {method: 'post', body: JSON.stringify(newTransaction)})
         .then((response) => response.json())
         .then((data) => {
@@ -67,6 +67,5 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
       </div>
     )
 }
-
 
 export default TForm

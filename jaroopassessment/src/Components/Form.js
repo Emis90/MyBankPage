@@ -16,16 +16,12 @@ const Form = ({setToggle, setUser, user}) => {
         newUser.firstName = newUser.firstName[0].toUpperCase() + newUser.firstName.slice(1).toLowerCase()
         newUser.lastName = newUser.lastName[0].toUpperCase() + newUser.lastName.slice(1).toLowerCase()
         newUser.created = new Date()
-      try {
         fetch(`/api/account/user/${user.id}`, { method: 'put', body: JSON.stringify(newUser) })
         .then(res => res.json())
         .then(data => {
           setUser(data)
           setToggle('info')})
         .catch(error => console.log(error))
-      } catch (error) {
-        console.log('error from tryc', error)
-      }
     }
 
     return(
