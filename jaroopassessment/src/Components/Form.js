@@ -11,7 +11,7 @@ const Form = ({setToggle, setUser, user}) => {
         console.log(newUser)
      }
 
-    const submit = async(e) => {
+    const submit = (e) => {
       e.preventDefault()
         newUser.firstName = newUser.firstName[0].toUpperCase() + newUser.firstName.slice(1).toLowerCase()
         newUser.lastName = newUser.lastName[0].toUpperCase() + newUser.lastName.slice(1).toLowerCase()

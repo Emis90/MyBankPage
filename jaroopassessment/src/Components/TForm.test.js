@@ -16,5 +16,4 @@ describe('Transaction form ', () => {
         const h2 = shallow(<h2>Add another transaction</h2>)
         expect(h2).toMatchSnapshot()
     })
-
 })

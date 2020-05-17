@@ -7,7 +7,7 @@ const Dashboard = ({balance, setBalance}) => {
     const [transactions, setTrans] = useState([])
     const [toggle, setToggle] = useState(false)
 
-    const getTransactions = async()=> {
+    const getTransactions = ()=> {
             fetch('/api/account/100/transactions', {method: 'get'})
             .then((response) => response.json())
             .then((data) => {
