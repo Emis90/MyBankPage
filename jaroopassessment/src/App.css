@@ -87,7 +87,7 @@ select {
   padding: .5em;
 }
 input:invalid {
-  background-color: rgb(201, 182, 185);
+  background-color: rgb(248, 175, 199);
 }
 input {
   width: 14em;
