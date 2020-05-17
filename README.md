@@ -12,7 +12,7 @@ You can add more transactions, click the button on Dashboard and fill out the fo
 
 The transactions box is scollable.
 
-I used miragejs to create a fake server. 
+I used miragejs to create a fake server, all routes are in index.js. 
 
 Changes (updating user profile or adding transactions) will not persist on refresh because I am not usind a database nor a real server.
 
