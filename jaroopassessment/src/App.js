@@ -9,23 +9,38 @@ function App() {
   const [ user, setUser ] = useState(null) 
   const [ balance, setBalance ] = useState(0)
 
-  const getUser = async()=> {
+  const getUser = ()=> {
     try {
       fetch('/api/account/100', {method: 'get'})
       .then((response) => response.json())
       .then((user) => {
         setUser(user)
-        setBalance(user.balance)
       })
       .catch(error => error)  
     } catch (error) {
       console.log(error)
     }
   }
+
+  const getBalance = () => {
+    try {
+      fetch(`/api/account/${user.id}/balance`, {method: 'get'})
+      .then((response) => response.json())
+      .then((res) => {
+        setBalance(res.balance)
+      })
+      .catch(error => error)  
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     getUser()
   }, [])
-
+  useEffect(() => {
+    getBalance()
+  }, [user])
 
   const changePage = (page) => {
     setPage(page)

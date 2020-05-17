@@ -20,15 +20,15 @@ const transactions = [
       "description": "Main Street Gas Station"
   }
 ]
-let currentUser = {
+const currentUser = {
   "id": 1000,
   "firstName": "Jane",
   "lastName": "Smith",
   "email": "jane.smith@example.com",
   "phone": "5555555555",
   "created": "2020-02-21T02:00:00.000Z",
-  "balance": "12345.67"
 }
+const balance = {"balance": "12345.67"}
 
 
 new Server({
@@ -45,6 +45,13 @@ new Server({
     this.get("/account/:id/transactions", ()=> {
       try {
         return transactions
+      } catch (error) {
+        console.log(error)
+      }
+    })
+    this.get("/account/:id/balance", () => {
+      try {
+        return balance
       } catch (error) {
         console.log(error)
       }
