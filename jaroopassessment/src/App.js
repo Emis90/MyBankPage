@@ -11,11 +11,11 @@ function App() {
 
   const getUser = async()=> {
     try {
-      fetch("/api/account/100", {method: 'get'})
+      fetch('/api/account/100', {method: 'get'})
       .then((response) => response.json())
-      .then((data) => {
-        setUser(data.user)
-        setBalance(data.user.balance)
+      .then((user) => {
+        setUser(user)
+        setBalance(user.balance)
       })
       .catch(error => error)  
     } catch (error) {
@@ -31,11 +31,11 @@ function App() {
     setPage(page)
   }
   return (
-    <div className="App">
+    <div className='App'>
       <h3>Welcome back</h3>
-      <header className="App-header">
-        <div className="dashHeader" onClick={()=> changePage('dashboard')}><p>dashboard</p></div>
-        <div className="profHeader" onClick={()=> changePage('profile')}><p>profile</p></div>
+      <header className='App-header'>
+        <div className='dashHeader' onClick={()=> changePage('dashboard')}><p>dashboard</p></div>
+        <div className='profHeader' onClick={()=> changePage('profile')}><p>profile</p></div>
       </header>
       <div className='container'>
         { page === 'dashboard' ? <Dashboard balance={balance} setBalance={setBalance}/> : <Profile user={user} setUser={setUser}/>}

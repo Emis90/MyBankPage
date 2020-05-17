@@ -2,10 +2,8 @@ import React, {useState } from 'react'
 
 //use span for errors
 const Form = ({setToggle, setUser, user}) => {
-    const [newUser, setNewUser] = useState({firstName: '', lastName: '', phone: '', email: ''})
-    const cancel = () => {
-      setToggle(false)
-  }
+    const [newUser, setNewUser] = useState({})
+  
     const change = (event) => {
         setNewUser({...newUser, 
          [event.target.name]: event.target.value
@@ -19,7 +17,7 @@ const Form = ({setToggle, setUser, user}) => {
         newUser.lastName = newUser.lastName[0].toUpperCase() + newUser.lastName.slice(1).toLowerCase()
         newUser.created = new Date()
       try {
-        fetch(`/api/account/user/${user.id}`, { method: 'PUT', body: JSON.stringify(newUser) })
+        fetch(`/api/account/user/${user.id}`, { method: 'put', body: JSON.stringify(newUser) })
         .then(res => res.json())
         .then(data => {
           setUser(data)
@@ -31,9 +29,9 @@ const Form = ({setToggle, setUser, user}) => {
     }
 
     return(
-        <div id='form'>
-          <h3>Submit your new credentials</h3>
-        <form onChange={change} onSubmit={(e)=> submit(e)}>
+        <div className='form'>
+          <h2>Submit your new credentials</h2>
+        <form onChange={change} onSubmit={(e) => submit(e)}>
         <div className='fields'>
         <input type="text" name="firstName" placeholder='First name'required/>
         </div>
@@ -50,7 +48,6 @@ const Form = ({setToggle, setUser, user}) => {
         <input type="submit" value="Submit" id='submit'/> 
         </div>
         </form>
-        <button className='cancelButton' onClick={cancel}>cancel</button>
         </div>
         )
 }

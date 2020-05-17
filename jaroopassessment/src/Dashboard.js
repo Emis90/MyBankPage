@@ -8,7 +8,7 @@ const Dashboard = ({balance, setBalance}) => {
     const [toggle, setToggle] = useState(false)
     const getTransactions = async()=> {
         try {
-            fetch("/api/account/100/transactions", {method: 'get'})
+            fetch('/api/account/100/transactions', {method: 'get'})
             .then((response) => response.json())
             .then((data) => {
                 setTrans(data)
@@ -19,27 +19,37 @@ const Dashboard = ({balance, setBalance}) => {
         }
     }
 
-
     useEffect(() => {
       getTransactions()
     }, [balance])
-
+    
+    const modalStyle = {
+        content : {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          width: '24em',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)'
+        }
+      };
     return (
         <div className='dashboard'>
-            <div className="currentBalance">
+            <div className='currentBalance'>
             <h3 id='balanceTxt'>Current balance: {balance ? balance : null}</h3>
-            <button onClick={()=> setToggle(true)}>Purchase something random</button>
-            <Modal isOpen={toggle} ariaHideApp={false}>
+            <button id='randomButton' onClick={()=> setToggle(true)}>Purchase something random</button>
+            <Modal isOpen={toggle} ariaHideApp={false} style={modalStyle}>
              <TForm setBalance={setBalance} transactions={transactions} setToggle={setToggle} balance={balance}/>
             </Modal>
             </div>
-            <div className="transactionsBox">
-                <h2>Transactions</h2>
+            <div className='transactionsBox'>
+                <h3 style={{fontWeight: 'bold'}}>Transactions</h3>
                 <div className='passedTransactions'>
                   {transactions && transactions ? transactions.map(el => {
                       return <Card key={el.id} transaction={el}/>
                     }) : null}
-                </div>
+            </div>
             </div>
         </div>
     )

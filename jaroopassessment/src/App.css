@@ -13,6 +13,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.App-link {
+  color: #61dafb;
+}
 
 .App-header {
   background-color: #282c34;
@@ -23,20 +26,11 @@
   font-size: calc(10px + 2vmin);
   color: rgb(221, 223, 238);
 }
-.dashHeader:hover {
+.dashHeader:hover, .profHeader:hover  {
  background-color: rgb(90, 91, 111);
  cursor: pointer;
 }
-.profHeader:hover {
-  background-color: rgb(90, 91, 111);
-  cursor: pointer;
- }
-.dashHeader {
-  width: fit-content;
-  padding-left: 2em;
-  padding-right: 2em;
-}
-.profHeader{
+.dashHeader, .profHeader {
   width: fit-content;
   padding-left: 2em;
   padding-right: 2em;
@@ -44,44 +38,42 @@
 .currentBalance {
   padding: 1em;
 }
-.App-link {
-  color: #61dafb;
-}
-#balanceTxt {
-  align-self: center;
-}
-.dashboard  {
+
+.dashboard, .profile , .container{
+ display: flex;
  flex-direction: column;
- align-items: center;
- justify-content: space-evenly;
- align-content: center;
- align-items: center;
+ justify-content: baseline;
+ background-color: thistle;
+ margin-top: 0;
  height: 90vh;
 }
 
 .transactionsBox {
-  padding: 1em;
   background-color:rgb(90, 91, 111);
   color: white;
-  margin-left: 20vw;
-  margin-right: 20vw;
+  align-self: center;
   border-radius: .5em;
-  height: 30em;
-  justify-content: space-evenly;
+  height: 20em;
+  width: 25em;
+  padding: 1em;
   overflow-y: scroll;
 }
-button, #submit, input, #cancelButton{
+button, #submit, input {
   border-radius: 2%;
   background-color: rgb(226, 235, 252);
   color: rgb(6, 6, 214);
-  border-width: .5;
+  border-width: .5em;
   border-color: darkblue;
   border-style: none;
   font-weight: bold;
-  padding: 1%;
+  padding: 1em;
 }
-.cancelButton:-webkit-outer-spin-button {
-  -webkit-appearance: none;
+#cancelButton {
+  background-color: white;
+  color: red;
+  border-radius: '50%';
+  align-self: flex-end;
+  margin: 0
 }
 select {
   -ms-progress-appearance: none;
@@ -95,35 +87,47 @@ select {
   padding: .5em;
 }
 input:invalid {
-  background-color: rgb(250, 211, 217);
+  background-color: rgb(201, 182, 185);
 }
-input:valid {
-  background-color: rgb(217, 247, 216);
-}
-input, select {
-  min-width: 35%;
-  min-height: 10%;
-  padding: 2%;
-  margin: 1%;
+input {
+  width: 14em;
+  height: 3em;
+  padding: .5em;
+  margin: .5em;
   font-size: medium;
 }
-#tform {
-flex-direction: 'column';
-flex-wrap: nowrap;
+select {
+  width: 12em;
+  height: 3.5em;
+  padding: .5em;
+  margin: .5em;
+  background-color: rgb(226, 235, 252);
+  font-weight: bold;
+  font-size: medium;
+  border-width: 0;
 }
-#form {
-  /* padding: 8%; */
-  margin: 5%;
-  justify-content: flex-end;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
+  align-items: center;
 }
 .fields {
   flex-direction: column;
   flex-wrap: nowrap;
   margin: 1%;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-.tformElement {
-  justify-self: center;
+#randomButton {
+  font-size: medium;
+  border-radius: .5em;
+  color:#282c34;
 }
 
 @keyframes App-logo-spin {

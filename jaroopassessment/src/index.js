@@ -20,44 +20,53 @@ const transactions = [
       "description": "Main Street Gas Station"
   }
 ]
-let currentUser = { 
-  user: {
-  id: 100, 
-  firstName: 'Jane', 
-  lastName:'Smith', 
-  email: 'jane.smith@example.com',
-  phone: '5555555555', 
-  created: '2020-02-21T02:00:00.000Z', 
-  balance: 12345.67}
+let currentUser = {
+  "id": 1000,
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com",
+  "phone": "5555555555",
+  "created": "2020-02-21T02:00:00.000Z",
+  "balance": "12345.67"
 }
+
 
 new Server({
   routes() {
     this.namespace = "/api"
 
     this.get("/account/:id", () => {
-      return currentUser
+      try {
+        return currentUser
+      } catch (error) {
+        console.log(error)
+      }
     })
     this.get("/account/:id/transactions", ()=> {
-      return transactions
+      try {
+        return transactions
+      } catch (error) {
+        console.log(error)
+      }
     })
     this.post("/account/:id/transactions", (schema, request, response) => {
       try {
         let data = request.requestBody
         data = JSON.parse(data)
         transactions.push(data)
-        console.log('ransactions ', transactions)
         return transactions
       } catch (error) {
-        throw(error)
+        console.log(error)
       }
     })
     this.put("/account/user/:id", (schema, request, response) => {
        try {
          let newUser = request.requestBody
+         console.log('newuser without parsing ', newUser)
+        //  newUser = JSON.parse(newUser)
          return newUser
        } catch (error) {
-        throw(error)
+        console.log(error)
        }
     })
   }

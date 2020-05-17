@@ -8,8 +8,8 @@ const Profile = ({user, setUser}) => {
     return (
         <div className='profile'>
             {user && user ? (
-            <div  id='userContainer'>
-            <p style={{fontSize: 30}}>{user.firstName} {user.lastName}</p>
+            <div>
+            <p style={{fontSize: 30, margin: 0, paddingTop: '2em'}}>{user.firstName} {user.lastName}</p>
             <p>{user.email}</p>
             <p>{user.phone}</p>
             <button id='changeButton' onClick={()=> setToggle('change')}>Change credentials</button> 

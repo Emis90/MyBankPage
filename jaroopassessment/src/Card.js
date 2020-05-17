@@ -5,12 +5,12 @@ const Card = ({transaction})=>{
     transaction.time = transaction.created.split('T')[1].split('.')[0]
     return(
         <div className='card'>
-         <div>
-         <p style={{fontSize: 10}}>{transaction.date}   ||   {transaction.time}</p>
+         <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+         <p style={{fontSize: 10}}>{transaction.date}      {transaction.time}</p>
          </div>
-         <div>
-         <p>${transaction.amount}</p>
-         <p>{transaction.description}</p>
+         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+         <h3>${transaction.amount}</h3>
+         <h3>{transaction.description}</h3>
          </div>
         </div>
     )
