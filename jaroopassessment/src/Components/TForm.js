@@ -7,12 +7,14 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
         setNewTransaction({...newTransaction, 
             [event.target.name]: event.target.value
            })
+          console.log(newTransaction) 
         }
     const cancel = () => {
         setToggle(false)
         }
     const submit = (e) => {
        e.preventDefault()
+       console.log(newTransaction)
        if(Number(newTransaction.amount) > Number(balance)) {
            alert(`Cannot submit payment of ${newTransaction.amount}, insufficient funds`)
            e.preventDefault()
@@ -53,9 +55,9 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
          <input type='text' name='description' placeholder='description' required/>
          </div>
          <div className='fields'>
-         <select>
-             <option name='type' value='Credit' label='credit'/>
-             <option name='type' value='Debit' label='debit'/>
+         <select name='type'>
+             <option value='Credit' label='credit'/>
+             <option value='Debit' label='debit'/>
          </select>
          </div>
          <div className='fields'>
