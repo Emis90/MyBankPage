@@ -70,8 +70,7 @@ new Server({
     this.put("/account/:id", (schema, request, response) => {
        try {
          let newUser = request.requestBody
-         console.log('newuser without parsing ', newUser)
-        //  newUser = JSON.parse(newUser)
+         newUser = JSON.parse(newUser)
          return newUser
        } catch (error) {
             console.log("error: ", error)
