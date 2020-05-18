@@ -7,7 +7,6 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
         setNewTransaction({...newTransaction, 
             [event.target.name]: event.target.value
            })
-           console.log(newTransaction)
         }
     const cancel = () => {
         setToggle(false)
@@ -61,7 +60,6 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
          </div>
          <div className='fields'>
          <input type='submit' value='Submit'/>
-         
          </div>
       </form>
       </div>

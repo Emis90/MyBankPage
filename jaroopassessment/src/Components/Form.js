@@ -8,7 +8,6 @@ const Form = ({setToggle, setUser, user}) => {
         setNewUser({...newUser, 
          [event.target.name]: event.target.value
         })
-        console.log(newUser)
      }
 
     const submit = (e) => {
@@ -16,7 +15,7 @@ const Form = ({setToggle, setUser, user}) => {
         newUser.firstName = newUser.firstName[0].toUpperCase() + newUser.firstName.slice(1).toLowerCase()
         newUser.lastName = newUser.lastName[0].toUpperCase() + newUser.lastName.slice(1).toLowerCase()
         newUser.created = new Date()
-        fetch(`/api/account/user/${user.id}`, { method: 'put', body: JSON.stringify(newUser) })
+        fetch(`/api/account/${user.id}`, { method: 'put', body: JSON.stringify(newUser) })
         .then(res => res.json())
         .then(data => {
           setUser(data)

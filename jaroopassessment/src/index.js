@@ -27,8 +27,8 @@ const currentUser = {
   "email": "jane.smith@example.com",
   "phone": "5555555555",
   "created": "2020-02-21T02:00:00.000Z",
+  "balance": "12345.67"
 }
-const balance = {"balance": "12345.67"}
 
 
 new Server({
@@ -39,7 +39,7 @@ new Server({
       try {
         return currentUser
       } catch (error) {
-        console.log(error)
+        console.log("error: ", error)
       }
     })
     this.get("/account/:id/transactions", ()=> {
@@ -51,9 +51,10 @@ new Server({
     })
     this.get("/account/:id/balance", () => {
       try {
-        return balance
+        console.log(currentUser.balance)
+        return currentUser.balance
       } catch (error) {
-        console.log(error)
+        console.log("error: ", error)
       }
     })
     this.post("/account/:id/transactions", (schema, request, response) => {
@@ -63,17 +64,17 @@ new Server({
         transactions.push(data)
         return transactions
       } catch (error) {
-        console.log(error)
+        console.log("error: ", error)
       }
     })
-    this.put("/account/user/:id", (schema, request, response) => {
+    this.put("/account/:id", (schema, request, response) => {
        try {
          let newUser = request.requestBody
          console.log('newuser without parsing ', newUser)
         //  newUser = JSON.parse(newUser)
          return newUser
        } catch (error) {
-        console.log(error)
+            console.log("error: ", error)
        }
     })
   }

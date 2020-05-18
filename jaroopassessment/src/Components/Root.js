@@ -4,7 +4,7 @@ import Dashboard from './Dashboard'
 
 const Root = () => {
     const [ page, setPage ] = useState('dashboard')
-    const [ user, setUser ] = useState(null) 
+    const [ user, setUser ] = useState({}) 
     const [ balance, setBalance ] = useState(0)
   
     const getUser = ()=> {
@@ -22,11 +22,12 @@ const Root = () => {
     }
   
     const getBalance = () => {
+      console.log('get balance function user.id  ', user.id)
       try {
-        fetch(`/api/account/${user.id}/balance`, {method: 'get'})
+        fetch(`/api/account/${user.id}/balance`, { method: 'get' })
         .then((response) => response.json())
-        .then((res) => {
-          setBalance(res.balance)
+        .then((balance) => {
+          setBalance(balance)
         })
         .catch(error => error)  
       } catch (error) {
@@ -38,13 +39,15 @@ const Root = () => {
     useEffect(() => {
       getUser()
     }, [])
+
     useEffect(() => {
       getBalance()
-    }, [user])
+    })
   
     const changePage = (page) => {
       setPage(page)
     }
+    
     return (
       <div className='Root'>
         <h3>Welcome back</h3>

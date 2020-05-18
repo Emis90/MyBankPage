@@ -6,16 +6,14 @@ import TForm from './TForm'
 const Dashboard = ({balance, setBalance}) => {
     const [transactions, setTrans] = useState([])
     const [toggle, setToggle] = useState(false)
-
     const getTransactions = ()=> {
-            fetch('/api/account/100/transactions', {method: 'get'})
+            fetch('/api/account/100/transactions', { method: 'get'})
             .then((response) => response.json())
             .then((data) => {
                 setTrans(data)
             })
             .catch(error => error)
-    }
-
+          }
     useEffect(() => {
       getTransactions()
     }, [balance])
