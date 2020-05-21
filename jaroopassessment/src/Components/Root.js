@@ -42,7 +42,7 @@ const Root = () => {
 
     useEffect(() => {
       getBalance()
-    })
+    }, [user])
   
     const changePage = (page) => {
       setPage(page)

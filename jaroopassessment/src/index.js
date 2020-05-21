@@ -8,7 +8,7 @@ const transactions = [
   {
       "id": 1000,
       "created": "2020-02-21T20:32:03.681Z",
-      "amount": 2000,
+      "amount": 2000.00,
       "type": "Debit",
       "description": "Payroll Direct Deposit"
   },

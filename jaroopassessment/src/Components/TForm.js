@@ -2,13 +2,18 @@ import React, {useState} from 'react'
 
 
 const TForm = ({transactions, setToggle, balance, setBalance}) => {
-    const [newTransaction, setNewTransaction] = useState({})
+    const [newTransaction, setNewTransaction] = useState({type: 'Credit'})
     const change = (event) => {
-        setNewTransaction({...newTransaction, 
-            [event.target.name]: event.target.value
-           })
-          console.log(newTransaction) 
+        if([event.target.name] === 'Debit') {
+            setNewTransaction({...newTransaction, type: 'Debit'})
+        } else {
+            setNewTransaction({...newTransaction, 
+                [event.target.name]: event.target.value
+               })
+               console.log(newTransaction)
+            }
         }
+        
     const cancel = () => {
         setToggle(false)
         }
@@ -49,15 +54,15 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
         
       <form onChange={change} onSubmit={(e) => submit(e)}>
          <div className='fields'>
-         <input type="number" name='amount' placeholder='amount' min='1' max='1000000' required /> 
+         <input type="number" name='amount' placeholder='amount' min='1' max='1000000' required step=".01"/> 
          </div>
          <div className='fields'>
          <input type='text' name='description' placeholder='description' required/>
          </div>
          <div className='fields'>
-         <select name='type'>
-             <option value='Credit' label='credit'/>
-             <option value='Debit' label='debit'/>
+         <select name='type' defaultValue='Credit'>
+             <option type='text' value='Credit' label='credit'/>
+             <option type='text' value='Debit' label='debit'/>
          </select>
          </div>
          <div className='fields'>
