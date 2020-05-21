@@ -10,7 +10,6 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
             setNewTransaction({...newTransaction, 
                 [event.target.name]: event.target.value
                })
-               console.log(newTransaction)
             }
         }
         
@@ -54,7 +53,7 @@ const TForm = ({transactions, setToggle, balance, setBalance}) => {
         
       <form onChange={change} onSubmit={(e) => submit(e)}>
          <div className='fields'>
-         <input type="number" name='amount' placeholder='amount' min='1' max='1000000' required step=".01"/> 
+         <input type="number" name='amount' placeholder='amount' min='0.01' max='1000000' required step=".01"/> 
          </div>
          <div className='fields'>
          <input type='text' name='description' placeholder='description' required/>
