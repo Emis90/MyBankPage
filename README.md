@@ -1,4 +1,3 @@
-# jaroopAssessment
 
 Run npm install on terminal to install all the dependencies, then run npm tests to check all tests are passing. 
 Run npm start to open up the project.
