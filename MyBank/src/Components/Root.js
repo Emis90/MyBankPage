@@ -7,7 +7,7 @@ const Root = () => {
     const [ user, setUser ] = useState({}) 
     const [ balance, setBalance ] = useState(0)
   
-    const getUser = ()=> {
+    const getUser = () => {
       try {
         fetch('/api/account/100', {method: 'get'})
         .then((response) => response.json())
@@ -22,7 +22,6 @@ const Root = () => {
     }
   
     const getBalance = () => {
-      console.log('get balance function user.id  ', user.id)
       try {
         fetch(`/api/account/${user.id}/balance`, { method: 'get' })
         .then((response) => response.json())
@@ -37,12 +36,14 @@ const Root = () => {
     }
   
     useEffect(() => {
+      console.log('useEffect get user')
       getUser()
     }, [])
 
     useEffect(() => {
+      console.log('useEffect get balance afterUser')
       getBalance()
-    }, [user])
+    })
   
     const changePage = (page) => {
       setPage(page)
